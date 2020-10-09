@@ -19,7 +19,7 @@ public class Lattice {
     private State currentState;
 
     public Lattice() {
-        Position.getAll().forEach(pos -> values.put(pos, 1));
+        Position.getAll().forEach(this::flip);
         currentState = calculateState();
     }
 
@@ -30,14 +30,18 @@ public class Lattice {
 
     public void randomFlip() {
         Position position = Position.random(random);
-        values.compute(position, (p, v) -> -v);
+        flip(position);
         State newState = calculateState();
         double change = newState.energy() - currentState.energy();
         if (change < 0 || Math.exp(-change / temp) > random.nextDouble()) {
             currentState = newState;
         } else {
-            values.compute(position, (p, v) -> -v);
+            flip(position);
         }
+    }
+
+    private void flip(Position position) {
+        values.merge(position, 1, (p, v) -> -v);
     }
 
     public void forEach(BiConsumer<Position, Integer> action) {

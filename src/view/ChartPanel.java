@@ -11,7 +11,6 @@ import java.util.List;
 
 public class ChartPanel extends BorderPane {
     private final TempRangeSimulation rangeSimulation;
-    private final LineChart<Number, Number> chart;
     private final XYChart.Series<Number, Number> energySeries = new XYChart.Series<>();
     private final XYChart.Series<Number, Number> magnetismSeries = new XYChart.Series<>();
     private final XYChart.Series<Number, Number> heatCapacitySeries = new XYChart.Series<>();
@@ -21,12 +20,13 @@ public class ChartPanel extends BorderPane {
         NumberAxis values = new NumberAxis();
         NumberAxis temp = new NumberAxis("Temperature",
                 rangeSimulation.getTempMin(), rangeSimulation.getTempMax(), rangeSimulation.getTempStep());
-        this.chart = new LineChart<>(temp, values);
+        LineChart<Number, Number> chart = new LineChart<>(temp, values);
         chart.setCreateSymbols(false);
         energySeries.setName("Energy");
         magnetismSeries.setName("Magnetism");
         heatCapacitySeries.setName("Heat Capacity");
         setCenter(chart);
+        //noinspection unchecked
         chart.getData().addAll(energySeries, magnetismSeries, heatCapacitySeries);
         chart.setVerticalGridLinesVisible(false);
         rangeSimulation.progressProperty().addListener((ov, l1, l2) -> showData());

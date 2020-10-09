@@ -25,21 +25,19 @@ public class LatticeScene {
 
     private final Group root = new Group();
     private final PerspectiveCamera camera = new PerspectiveCamera();
-    private final Translate centre = new Translate(maxX / 2, maxY / 2, maxZ / 2);
     private final Rotate rotateX = new Rotate(0, Rotate.X_AXIS);
     private final Rotate rotateY = new Rotate(0, Rotate.Y_AXIS);
     private final Translate zoom = new Translate(-maxX / 2, -maxY / 2, -100 - maxZ / 2);
-    private final Simulation simulation;
     private final PhongMaterial evenParticleMaterial;
     private final PhongMaterial oddParticleMaterial;
     private final PhongMaterial linkMaterial;
     private Optional<DragStart> drag = Optional.empty();
 
     public LatticeScene(Simulation simulation) {
-        this.simulation = simulation;
         this.evenParticleMaterial = new PhongMaterial(Color.RED);
         this.oddParticleMaterial = new PhongMaterial(Color.LIGHTPINK);
         this.linkMaterial = new PhongMaterial(Color.DARKGREY);
+        Translate centre = new Translate(maxX / 2, maxY / 2, maxZ / 2);
         camera.getTransforms().addAll(centre, rotateX, rotateY, zoom);
         simulation.getMatrix().forEach(this::addParticle);
     }
