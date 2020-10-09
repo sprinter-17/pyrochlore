@@ -7,11 +7,14 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 import lattice.Simulation;
-import lattice.TempRangeSimulation;
 
+/**
+ * Application to run a simulation of the state of a pyrochlore lattice at a range of temperatures and plot the
+ * results.
+ */
 public class Main extends Application {
-    private final Simulation simulation = new Simulation(1.0);
-    private final TempRangeSimulation range = new TempRangeSimulation(simulation, .25, 5.0, .25);
+    private final Simulation simulation = new Simulation();
+    private final SimulationTask range = new SimulationTask(simulation, 20, 70, .1);
     private final ChartPanel chartPanel = new ChartPanel(range);
     private final FlowPane buttons = new FlowPane();
     private final Button showLattice = new Button("Show Lattice");

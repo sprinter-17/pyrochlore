@@ -15,6 +15,10 @@ import lattice.Simulation;
 
 import java.util.Optional;
 
+/**
+ * 3D visualisation of the pyrochlore lattice being simulated. Designed to allow the connections to be visually
+ * verified.
+ */
 public class LatticeScene {
     private static final double X_SCALE = 20;
     private static final double Y_SCALE = Math.sqrt(3.0) * X_SCALE / 2.0;
