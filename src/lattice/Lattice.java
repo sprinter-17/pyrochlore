@@ -12,10 +12,10 @@ import java.util.function.BiConsumer;
 public class Lattice {
     public final static int INTERACTION_DISTANCE = 5;
     public final static double DELTA_S = 3.0 * Math.log(5.0);
-    public final static double DELTA_H = K * Math.pow(delta, 2.0);
+    private final static double B = 20.0e3;
     private final static double K = 6 * B / 10.0;
     private final static double delta = 0.1;
-    private final static double B = 20.0e3;
+    public final static double DELTA_H = K * Math.pow(delta, 2.0);
     private final Random random = new Random();
     private final Map<Position, Integer> values = new HashMap<>();
     private double temp = 0;
