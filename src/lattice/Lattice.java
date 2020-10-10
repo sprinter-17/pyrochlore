@@ -10,14 +10,12 @@ import java.util.function.BiConsumer;
  * legal positions as returned by {@link Position#getAll()}.
  */
 public class Lattice {
-    private final static double B = 20.0;
+    public final static int INTERACTION_DISTANCE = 5;
+    public final static double DELTA_S = 3.0 * Math.log(5.0);
+    public final static double DELTA_H = K * Math.pow(delta, 2.0);
     private final static double K = 6 * B / 10.0;
     private final static double delta = 0.1;
-    //    private final static double deltaH = K * Math.pow(delta, 2.0);
-    private final static double deltaH = 120;
-    private final static double deltaS = 3.0 * Math.log(5.0);
-    private final static int interactionDistance = 8;
-
+    private final static double B = 20.0e3;
     private final Random random = new Random();
     private final Map<Position, Integer> values = new HashMap<>();
     private double temp = 0;
@@ -25,13 +23,13 @@ public class Lattice {
     private State currentState;
 
     public Lattice() {
-        Position.getAll().forEach(pos -> values.put(pos, 1));
+        Position.getAll().forEach(pos -> values.put(pos, +1));
         currentState = calculateState();
     }
 
     public void setTemp(double temp) {
         this.temp = temp;
-        this.gibbs = deltaH - temp * deltaS;
+        this.gibbs = DELTA_H - temp * DELTA_S;
     }
 
     public void randomFlip() {
@@ -59,7 +57,7 @@ public class Lattice {
     private double interactionEnergy(Position position, double gibbs) {
         int spin = values.get(position);
         double energy = gibbs * spin;
-        for (Map.Entry<Position, Integer> entry : position.positionsWithin(interactionDistance).entrySet()) {
+        for (Map.Entry<Position, Integer> entry : position.positionsWithin(INTERACTION_DISTANCE).entrySet()) {
             Position neighbour = entry.getKey();
             int distance = entry.getValue();
             if (distance > 0) {

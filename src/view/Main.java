@@ -14,7 +14,7 @@ import lattice.Simulation;
  */
 public class Main extends Application {
     private final Simulation simulation = new Simulation();
-    private final SimulationTask range = new SimulationTask(simulation, 20, 70, .1);
+    private final SimulationTask range = new SimulationTask(simulation, 23, 80, .5);
     private final ChartPanel chartPanel = new ChartPanel(range);
     private final FlowPane buttons = new FlowPane();
     private final Button showLattice = new Button("Show Lattice");
@@ -26,7 +26,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        primaryStage.setTitle("Joe's Assignment");
+        primaryStage.setTitle("Pyrochlore Simulation");
         BorderPane borderPane = new BorderPane();
         buttons.setHgap(5.0);
         buttons.getChildren().addAll(showLattice, exit);

@@ -4,7 +4,10 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.layout.BorderPane;
+import lattice.Lattice;
+import lattice.Position;
 import lattice.Result;
+import lattice.Simulation;
 
 import java.util.List;
 
@@ -24,6 +27,11 @@ public class ChartPanel extends BorderPane {
         NumberAxis temp = new NumberAxis("Temperature",
                 rangeSimulation.getTempMin(), rangeSimulation.getTempMax(), rangeSimulation.getTempStep());
         LineChart<Number, Number> chart = new LineChart<>(temp, values);
+        chart.setTitle("Lattice size " + Position.SIZE
+                + ", Interaction distance " + Lattice.INTERACTION_DISTANCE
+                + ", Iterations " + Simulation.SIMULATION_ITERATIONS
+                + ", Enthalpy %.2f".formatted(Lattice.DELTA_H)
+                + ", Entropy %.2f".formatted(Lattice.DELTA_S));
         chart.setCreateSymbols(false);
         energySeries.setName("Energy");
         magnetismSeries.setName("Magnetism");

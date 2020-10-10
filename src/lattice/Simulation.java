@@ -11,8 +11,8 @@ import java.util.List;
  */
 public class Simulation {
     private final static int INITIAL_WARM_UP_ITERATIONS = Position.count() * 20;
-    private final static int FOLLOWING_WARM_UP_ITERATIONS = Position.count() * 10;
-    private final static int SIMULATION_ITERATIONS = Position.count() * 25;
+    public final static int SIMULATION_ITERATIONS = Position.count() * 25;
+    private final static int FOLLOWING_WARM_UP_ITERATIONS = Position.count() * 5;
 
     private final Lattice lattice = new Lattice();
 

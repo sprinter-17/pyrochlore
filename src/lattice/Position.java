@@ -17,7 +17,7 @@ public record Position(int x, int y, int z) {
      * The thickness of the lattice in all dimensions. This constant should be a multiple of 6 due to the repeating
      * pattern of the lattice.
      */
-    public static final int THICKNESS = 12;
+    public static final int THICKNESS = 6;
     public static final int SIZE = THICKNESS * 2;
     private static final Map<Position, Map<Position, Integer>> cache = new HashMap<>();
     private static OptionalInt count = OptionalInt.empty();
